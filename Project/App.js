@@ -30,6 +30,7 @@ import {
 
 import UIComponent from './UIComponent'
 import NativeComponent from './NativeComponent';
+import ViewModule from './ViewComponent';
 //
 // const App: () => React$Node = () => {
 //   NativeModules.ActivityStart.displayActivity();
@@ -44,12 +45,12 @@ export default class App extends React.Component {
     //NativeModules.ActivityStart.showState();
     //ToastExemple.show(this.props.message, ToastExemple.SHORT);
     return (
-      <View>
+      <View style={{flex:1}}>
         <NativeComponent/>
-        <View>
+        <View style={{flex: 1, backgroundColor:'green'}}>
           <UIComponent/>
         </View>
-    </View>)
+      </View>)
   }
 }
 

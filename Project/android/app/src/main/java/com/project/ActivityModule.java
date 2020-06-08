@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Handler;
 import android.util.Log;
+import android.view.View;
 import android.widget.Toast;
 
 import com.facebook.react.bridge.NativeModule;
@@ -31,6 +32,7 @@ public class ActivityModule extends ReactContextBaseJavaModule{
         Activity activity = getCurrentActivity();
                 if (activity != null) {
                     Intent intent = new Intent(activity, AugmentedFacesActivity.class);
+                    intent.putExtra("STATE", StateHolder.getInstance().getState());
                     activity.startActivity(intent);
                 }
     }
@@ -38,14 +40,17 @@ public class ActivityModule extends ReactContextBaseJavaModule{
     @ReactMethod
     public void showState() {
         Handler handler = new Handler();
-        int delay = 1000; //milliseconds
+        int delay = 500; //milliseconds
 
         handler.postDelayed(new Runnable(){
             public void run(){
                 Toast.makeText(getReactApplicationContext(), StateHolder.getInstance().getState(), Toast.LENGTH_SHORT).show();
+                if(StateHolder.getInstance().getState() != null){
+                    Log.d("state", StateHolder.getInstance().getState());
+                }
                 handler.postDelayed(this, delay);
             }
         }, delay);
-        //Log.d("test", StateHolder.getInstance().getState().toString());
+
     }
 }

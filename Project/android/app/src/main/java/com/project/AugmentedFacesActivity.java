@@ -58,7 +58,6 @@ public class AugmentedFacesActivity extends AppCompatActivity {
   private static final double MIN_OPENGL_VERSION = 3.0;
   private Pose centerPose;
   private com.project.FaceArFragment arFragment;
-  private ActivityModule activityModule;
   private ModelRenderable faceRegionsRenderable;
   private Texture faceMeshTexture;
 

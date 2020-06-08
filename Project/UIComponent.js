@@ -4,8 +4,7 @@ import {Button, NativeModules, Text, View} from 'react-native';
 class UIComponent extends  React.Component {
     render() {
         return (
-            <View >
-                <Text ceci est un test/>
+            <View style={{backgroundColor: 'yellow'}}>
                 <Button title={'test'} />
             </View>
         );
