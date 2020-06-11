@@ -7,12 +7,15 @@
     "ios": "react-native run-ios",
     "start": "react-native start",
     "test": "jest",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "web": "parcel clm_video2.html"
   },
   "dependencies": {
     "prop-types": "^15.7.2",
     "react": "16.11.0",
-    "react-native": "0.62.2"
+    "react-dom": "^16.13.1",
+    "react-native": "0.62.2",
+    "react-native-web": "^0.12.3"
   },
   "devDependencies": {
     "@babel/core": "7.9.6",
@@ -22,7 +25,11 @@
     "eslint": "6.8.0",
     "jest": "24.9.0",
     "metro-react-native-babel-preset": "0.58.0",
+    "parcel-bundler": "^1.12.4",
     "react-test-renderer": "16.11.0"
+  },
+  "alias": {
+    "react-native": "react-native-web"
   },
   "jest": {
     "preset": "react-native"
