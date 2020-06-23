@@ -7,11 +7,15 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import com.facebook.react.bridge.Arguments;
+import com.facebook.react.bridge.Callback;
 import com.facebook.react.bridge.NativeModule;
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
+import com.facebook.react.bridge.WritableMap;
+import com.facebook.react.modules.core.DeviceEventManagerModule;
 
 import java.util.Map;
 import java.util.HashMap;
@@ -51,6 +55,24 @@ public class ActivityModule extends ReactContextBaseJavaModule{
                 handler.postDelayed(this, delay);
             }
         }, delay);
+    }
 
+    @ReactMethod
+    public void getState(){
+        Handler handler = new Handler();
+        int delay = 500; //milliseconds
+
+        handler.postDelayed(new Runnable(){
+            public void run(){
+                if(StateHolder.getInstance().getState() != null){
+                    WritableMap payload = Arguments.createMap();
+                    payload.putString("state", StateHolder.getInstance().getState());
+
+                    getReactApplicationContext().getJSModule(DeviceEventManagerModule.RCTDeviceEventEmitter.class)
+                            .emit("StatusEvent", payload);
+                }
+                handler.postDelayed(this, delay);
+            }
+        }, delay);
     }
 }

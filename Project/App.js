@@ -24,9 +24,8 @@ import ToastExemple from './ToastExemple';
 
 import UIComponent from './UIComponent';
 import NativeComponent from './NativeComponent';
-//import ViewModule from './ViewComponent';
-
-
+import { Provider } from 'react-redux';
+import Store from './Store/configureStore';
 //
 // const App: () => React$Node = () => {
 //   NativeModules.ActivityStart.displayActivity();
@@ -44,11 +43,15 @@ export default class App extends React.Component {
     //NativeModules.ActivityStart.showState();
     //ToastExemple.show(this.props.message, ToastExemple.SHORT);
     return (
-      <View style={{flex:1}}>
-        <Text> {message} </Text>
-        <View style={{flex: 1, backgroundColor:'green'}}>
-        </View>
-      </View>)
+        <Provider store={Store}>
+            <NativeComponent/>
+          <View style={{flex:1}}>
+            <UIComponent/>
+          </View>
+        </Provider>
+
+        )
+
   }
 }
 
